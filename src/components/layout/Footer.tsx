@@ -1,6 +1,7 @@
 import React from "react";
 import Link from "next/link";
 import { Container } from "@/components/layout/Container";
+import { Logo } from "@/components/ui/Logo";
 
 export const Footer = () => {
   return (
@@ -8,11 +9,11 @@ export const Footer = () => {
       <Container>
         <div className="grid grid-cols-1 md:grid-cols-4 gap-12 lg:gap-8">
           <div className="col-span-1 md:col-span-1">
-            <Link href="/" className="font-heading font-bold text-xl text-primary mb-4 block">
-              StellarRoute
+            <Link href="/" className="mb-6 block hover:opacity-90 transition-opacity w-fit">
+              <Logo />
             </Link>
             <p className="text-sm text-foreground/60 leading-relaxed max-w-xs">
-              © 2024 StellarRoute. <br />
+              © 2024 PawaProtocol. <br />
               Infrastructure. Secure Settlement Layer.
             </p>
           </div>

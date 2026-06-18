@@ -2,6 +2,7 @@ import React from "react";
 import Link from "next/link";
 import { Button } from "@/components/ui/Button";
 import { Container } from "@/components/layout/Container";
+import { Logo } from "@/components/ui/Logo";
 
 export const Navbar = () => {
   return (
@@ -9,8 +10,8 @@ export const Navbar = () => {
       <Container>
         <div className="flex items-center justify-between h-16">
           <div className="flex items-center gap-8">
-            <Link href="/" className="font-heading font-bold text-xl text-primary flex items-center gap-2">
-              StellarRoute
+            <Link href="/" className="hover:opacity-90 transition-opacity">
+              <Logo />
             </Link>
             
             <nav className="hidden md:flex items-center gap-6">

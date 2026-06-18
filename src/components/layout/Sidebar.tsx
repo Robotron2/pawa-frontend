@@ -4,6 +4,7 @@ import React from "react";
 import Link from "next/link";
 import { LayoutDashboard, Route, Database, ArrowLeftRight, Wallet, Home } from "lucide-react";
 import { useWallet } from "@/hooks/useWallet";
+import { Logo } from "@/components/ui/Logo";
 
 export const Sidebar = () => {
   const { wallet } = useWallet();
@@ -12,11 +13,7 @@ export const Sidebar = () => {
     <aside className="w-64 h-screen border-r border-border bg-surface flex flex-col fixed left-0 top-0">
       <div className="p-6">
         <Link href="/" className="flex items-center gap-3 mb-10 hover:opacity-80 transition-opacity">
-          <div className="w-8 h-8 rounded-lg bg-primary flex items-center justify-center text-white">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-              <path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/>
-            </svg>
-          </div>
+          <Logo showText={false} />
           <div>
             <h2 className="font-heading font-bold text-sm leading-tight text-foreground">Network Node</h2>
             <p className="text-xs text-foreground/50">{wallet.network}</p>
