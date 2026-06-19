@@ -5,7 +5,7 @@ import { SlidersHorizontal, ArrowDownUp } from "lucide-react";
 
 export default function RoutesPage() {
   return (
-    <main className="p-12 relative min-h-screen">
+    <main className="p-4 sm:p-8 lg:p-12 relative min-h-screen">
       <div className="max-w-5xl mx-auto">
         <div className="mb-8">
           <h1 className="text-3xl font-heading font-bold text-foreground mb-2">Route Explorer</h1>
@@ -15,38 +15,42 @@ export default function RoutesPage() {
         </div>
 
         {/* Top Controls Bar */}
-        <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-8">
-          <div className="bg-white border border-border rounded-xl p-4 flex items-center gap-8 shadow-sm">
-            <div className="flex items-center gap-3">
-              <div className="w-6 h-6 rounded-full bg-accent flex items-center justify-center text-white text-xs font-bold">$</div>
+        <div className="flex flex-col lg:flex-row justify-between items-start lg:items-center gap-4 mb-8">
+          <div className="bg-white border border-border rounded-xl p-4 flex flex-col sm:flex-row items-start sm:items-center gap-4 sm:gap-8 shadow-sm w-full lg:w-auto">
+            <div className="flex flex-wrap items-center gap-3">
+              <div className="w-6 h-6 rounded-full bg-accent flex items-center justify-center text-white text-xs font-bold shrink-0">$</div>
               <span className="font-semibold text-lg">10,000 USDC</span>
-              <ArrowDownUp size={16} className="text-gray-400 rotate-90" />
-              <div className="w-6 h-6 rounded-full bg-primary flex items-center justify-center text-white text-xs font-bold">P</div>
+              <ArrowDownUp size={16} className="text-gray-400 rotate-90 shrink-0 mx-1" />
+              <div className="w-6 h-6 rounded-full bg-primary flex items-center justify-center text-white text-xs font-bold shrink-0">P</div>
               <span className="font-semibold text-lg">PAWA</span>
             </div>
-            <div className="h-8 w-px bg-border" />
-            <div>
-              <p className="text-[10px] text-foreground/50 uppercase font-bold tracking-wider">Max Slippage</p>
-              <p className="text-sm font-semibold">0.5%</p>
-            </div>
-            <div>
-              <p className="text-[10px] text-foreground/50 uppercase font-bold tracking-wider">Est. Gas Total</p>
-              <p className="text-sm font-semibold">~$4.20</p>
+            
+            <div className="hidden sm:block h-8 w-px bg-border" />
+            
+            <div className="flex items-center gap-6 w-full sm:w-auto justify-between sm:justify-start border-t border-border sm:border-0 pt-4 sm:pt-0 mt-2 sm:mt-0">
+              <div>
+                <p className="text-[10px] text-foreground/50 uppercase font-bold tracking-wider mb-0.5">Max Slippage</p>
+                <p className="text-sm font-semibold">0.5%</p>
+              </div>
+              <div>
+                <p className="text-[10px] text-foreground/50 uppercase font-bold tracking-wider mb-0.5">Est. Gas Total</p>
+                <p className="text-sm font-semibold">~$4.20</p>
+              </div>
             </div>
           </div>
 
-          <div className="flex items-center gap-2">
-            <div className="bg-white border border-border rounded-lg flex shadow-sm">
-              <button className="px-4 py-2 text-sm font-medium border-r border-border hover:bg-gray-50 flex items-center gap-2">
+          <div className="flex flex-row items-center gap-2 w-full lg:w-auto">
+            <div className="bg-white border border-border rounded-lg flex shadow-sm w-full lg:w-auto">
+              <button className="flex-1 lg:flex-none justify-center px-4 py-2.5 text-sm font-medium border-r border-border hover:bg-gray-50 flex items-center gap-2">
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
                 Best Output
               </button>
-              <button className="px-4 py-2 text-sm font-medium hover:bg-gray-50 flex items-center gap-2 text-foreground/60">
+              <button className="flex-1 lg:flex-none justify-center px-4 py-2.5 text-sm font-medium hover:bg-gray-50 flex items-center gap-2 text-foreground/60">
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
                 Lowest Gas
               </button>
             </div>
-            <Button variant="outline" className="w-10 h-10 p-0 bg-white shadow-sm">
+            <Button variant="outline" className="w-11 h-11 p-0 bg-white shadow-sm shrink-0">
               <SlidersHorizontal size={16} />
             </Button>
           </div>
