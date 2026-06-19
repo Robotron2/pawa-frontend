@@ -1,4 +1,8 @@
+"use client";
+
 import React from "react";
+import Link from "next/link";
+import { motion } from "framer-motion";
 import { Button } from "@/components/ui/Button";
 import { Badge } from "@/components/ui/Badge";
 import { Container } from "@/components/layout/Container";
@@ -24,26 +28,48 @@ export const Hero = () => {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
           {/* Left Column: Copy */}
           <div className="max-w-xl">
-            <Badge variant="outline" className="mb-6 rounded-md bg-white border-primary/20 text-primary">
-              <span className="mr-2">⚡</span> PAWAPROTOCOL V2.0 LIVE
-            </Badge>
             
-            <h1 className="text-5xl sm:text-6xl font-heading font-extrabold text-foreground tracking-tight leading-[1.1] mb-6">
-              Payments find <br /> their path.
+            
+            <h1 className="text-5xl sm:text-6xl font-heading font-extrabold text-foreground tracking-tight leading-[1.1] mb-6 overflow-hidden">
+              <motion.span 
+                className="block"
+                initial={{ opacity: 0, y: "100%" }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
+              >
+                Payments find
+              </motion.span>
+              <motion.span 
+                className="block"
+                initial={{ opacity: 0, y: "100%" }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, delay: 0.25, ease: [0.16, 1, 0.3, 1] }}
+              >
+                their path.
+              </motion.span>
             </h1>
             
             <p className="text-lg text-foreground/70 mb-10 leading-relaxed font-sans max-w-lg">
               Decentralized routing infrastructure that discovers optimal Stellar payment paths across liquidity pools.
             </p>
             
-            <div className="flex flex-col sm:flex-row items-center gap-4">
-              <Button size="lg" className="w-full sm:w-auto gap-2">
-                Build with Pawa <ArrowRight size={18} />
-              </Button>
-              <Button variant="outline" size="lg" className="w-full sm:w-auto bg-white">
-                Explore Paths
-              </Button>
-            </div>
+            <motion.div 
+              className="flex flex-col sm:flex-row items-center gap-4"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.7, delay: 0.45, ease: [0.16, 1, 0.3, 1] }}
+            >
+              <Link href="/dashboard" className="w-full sm:w-auto">
+                <Button size="lg" className="w-full gap-2 hover:-translate-y-0.5 transition-transform">
+                  Build with Pawa <ArrowRight size={18} />
+                </Button>
+              </Link>
+              <Link href="/routes" className="w-full sm:w-auto">
+                <Button variant="outline" size="lg" className="w-full bg-white hover:-translate-y-0.5 transition-transform">
+                  Explore Paths
+                </Button>
+              </Link>
+            </motion.div>
           </div>
 
           {/* Right Column: Visualization */}

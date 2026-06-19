@@ -34,6 +34,9 @@ export const Navbar = () => {
               </Link>
               
               <nav className="hidden md:flex items-center gap-6">
+                <Link href="/dashboard" className="text-sm font-medium text-foreground/80 hover:text-primary transition-colors">
+                  Dashboard
+                </Link>
                 <Link href="/routes" className="text-sm font-medium text-foreground/80 hover:text-primary transition-colors">
                   Routes
                 </Link>
@@ -92,6 +95,13 @@ export const Navbar = () => {
         </div>
         
         <nav className="flex flex-col gap-2">
+          <Link 
+            href="/dashboard" 
+            className="px-4 py-3 text-base font-medium rounded-xl hover:bg-gray-50 hover:text-primary transition-colors"
+            onClick={() => setIsOpen(false)}
+          >
+            Dashboard
+          </Link>
           <Link 
             href="/routes" 
             className="px-4 py-3 text-base font-medium rounded-xl hover:bg-gray-50 hover:text-primary transition-colors"
