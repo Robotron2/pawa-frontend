@@ -32,7 +32,7 @@ export const CTASection = () => {
           
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
             <Link href="/dashboard" className="w-full sm:w-auto">
-              <Button size="lg" className="w-full bg-white text-primary hover:bg-gray-50 hover:-translate-y-0.5 transition-transform gap-2 font-bold shadow-lg">
+              <Button variant="outline" size="lg" className="w-full bg-white border-transparent text-primary hover:bg-gray-100 hover:text-primary hover:-translate-y-0.5 transition-transform gap-2 font-bold shadow-lg">
                 Connect Wallet <ArrowRight size={18} />
               </Button>
             </Link>

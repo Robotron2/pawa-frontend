@@ -62,52 +62,81 @@ export const FeatureSection = () => {
                   </div>
                   
                   {/* Paths */}
-                  <div className="flex-1 relative h-32 mx-4 flex flex-col justify-between py-2">
+                  <div className="flex-1 relative h-32 -mx-1 flex flex-col justify-between py-2 z-0">
                     <div className="w-full h-px border-t border-dashed border-border absolute top-1/2 left-0 -translate-y-1/2" />
                     
-                    {/* Top Path */}
-                    <svg className="absolute inset-0 w-full h-full" preserveAspectRatio="none">
-                      <motion.path 
-                        d="M 0,64 Q 50,10 100,64" 
-                        fill="none" 
-                        stroke="rgba(74,141,255,0.2)" 
-                        strokeWidth="2" 
-                        vectorEffect="non-scaling-stroke"
-                      />
+                    {/* Background Static Paths */}
+                    <svg className="absolute inset-0 w-full h-full" viewBox="0 0 100 128" preserveAspectRatio="none">
+                      <path d="M 0,64 Q 50,-44 100,64" fill="none" stroke="rgba(74,141,255,0.15)" strokeWidth="2" vectorEffect="non-scaling-stroke" />
+                      <path d="M 0,64 Q 50,172 100,64" fill="none" stroke="rgba(74,141,255,0.15)" strokeWidth="2" vectorEffect="non-scaling-stroke" />
                     </svg>
-                    
-                    {/* Bottom Path */}
-                    <svg className="absolute inset-0 w-full h-full" preserveAspectRatio="none">
+
+                    {/* Animated Path 1: Top (Accent) */}
+                    <svg className="absolute inset-0 w-full h-full" viewBox="0 0 100 128" preserveAspectRatio="none">
                       <motion.path 
-                        d="M 0,64 Q 50,118 100,64" 
+                        d="M 0,64 Q 50,-44 100,64" 
                         fill="none" 
-                        stroke="rgba(74,141,255,0.2)" 
+                        stroke="var(--color-accent)" 
                         strokeWidth="2" 
                         vectorEffect="non-scaling-stroke"
+                        initial={{ pathLength: 0, opacity: 0 }}
+                        animate={{ pathLength: [0, 1, 1], opacity: [0, 1, 0] }}
+                        transition={{ duration: 2.5, repeat: Infinity, ease: "easeInOut", delay: 0 }}
                       />
                     </svg>
 
-                    {/* Active Path Line */}
-                    <svg className="absolute inset-0 w-full h-full" preserveAspectRatio="none">
+                    {/* Animated Path 2: Middle (Success) */}
+                    <svg className="absolute inset-0 w-full h-full" viewBox="0 0 100 128" preserveAspectRatio="none">
                       <motion.path 
-                        d="M 0,64 Q 50,118 100,64" 
+                        d="M 0,64 L 100,64" 
                         fill="none" 
-                        stroke="var(--color-primary)" 
+                        stroke="var(--color-success)" 
                         strokeWidth="2.5" 
                         vectorEffect="non-scaling-stroke"
-                        initial={{ pathLength: 0 }}
-                        whileInView={{ pathLength: 1 }}
-                        viewport={{ once: true }}
-                        transition={{ duration: 1.5, delay: 0.5, ease: "easeInOut" }}
+                        initial={{ pathLength: 0, opacity: 0 }}
+                        animate={{ pathLength: [0, 1, 1], opacity: [0, 1, 0] }}
+                        transition={{ duration: 2.5, repeat: Infinity, ease: "easeInOut", delay: 0.8 }}
+                      />
+                    </svg>
+
+                    {/* Animated Path 3: Bottom (Primary) */}
+                    <svg className="absolute inset-0 w-full h-full" viewBox="0 0 100 128" preserveAspectRatio="none">
+                      <motion.path 
+                        d="M 0,64 Q 50,172 100,64" 
+                        fill="none" 
+                        stroke="var(--color-primary)" 
+                        strokeWidth="2" 
+                        vectorEffect="non-scaling-stroke"
+                        initial={{ pathLength: 0, opacity: 0 }}
+                        animate={{ pathLength: [0, 1, 1], opacity: [0, 1, 0] }}
+                        transition={{ duration: 2.5, repeat: Infinity, ease: "easeInOut", delay: 1.6 }}
                       />
                     </svg>
                     
                     {/* Nodes */}
-                    <div className="absolute top-[8px] left-1/2 -translate-x-1/2 w-6 h-6 rounded-full bg-white border border-border shadow-sm z-10" />
-                    <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-6 h-6 rounded-full bg-white border border-border shadow-sm z-10" />
-                    <div className="absolute bottom-[8px] left-1/2 -translate-x-1/2 w-6 h-6 rounded-full bg-primary/10 border-2 border-primary shadow-sm z-10 flex items-center justify-center">
+                    <motion.div 
+                      className="absolute top-[10px] -translate-y-1/2 left-1/2 -translate-x-1/2 w-6 h-6 rounded-full bg-white border-2 border-accent shadow-sm z-10 flex items-center justify-center"
+                      animate={{ boxShadow: ["0 0 0px rgba(45,212,191,0)", "0 0 15px rgba(45,212,191,0.6)", "0 0 0px rgba(45,212,191,0)"] }}
+                      transition={{ duration: 2, repeat: Infinity, ease: "easeInOut", delay: 0.5 }}
+                    >
+                      <div className="w-2 h-2 rounded-full bg-accent" />
+                    </motion.div>
+
+                    <motion.div 
+                      className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-6 h-6 rounded-full bg-white border-2 border-success shadow-sm z-10 flex items-center justify-center"
+                      animate={{ boxShadow: ["0 0 0px rgba(74,222,128,0)", "0 0 15px rgba(74,222,128,0.6)", "0 0 0px rgba(74,222,128,0)"] }}
+                      transition={{ duration: 2, repeat: Infinity, ease: "easeInOut", delay: 1 }}
+                    >
+                      <div className="w-2 h-2 rounded-full bg-success" />
+                    </motion.div>
+
+                    <motion.div 
+                      className="absolute top-[118px] -translate-y-1/2 left-1/2 -translate-x-1/2 w-6 h-6 rounded-full bg-white border-2 border-primary shadow-sm z-10 flex items-center justify-center"
+                      animate={{ boxShadow: ["0 0 0px rgba(74,141,255,0)", "0 0 15px rgba(74,141,255,0.6)", "0 0 0px rgba(74,141,255,0)"] }}
+                      transition={{ duration: 2, repeat: Infinity, ease: "easeInOut", delay: 1.5 }}
+                    >
                       <div className="w-2 h-2 rounded-full bg-primary" />
-                    </div>
+                    </motion.div>
                   </div>
 
                   <div className="w-12 h-12 rounded-full border-2 border-primary bg-primary/5 shadow-[0_0_15px_rgba(74,141,255,0.2)] flex items-center justify-center font-bold text-primary relative z-10">
@@ -127,19 +156,19 @@ export const FeatureSection = () => {
               transition={{ duration: 0.6 }}
             >
                {/* Abstract Pools Visual */}
-               <div className="w-16 bg-gray-100 rounded-t-lg relative flex flex-col justify-end group">
+               <div className="w-16 h-[80%] bg-gray-100 rounded-t-lg relative flex flex-col justify-end group">
                  <motion.div 
                    className="w-full bg-accent/40 rounded-t-lg"
-                   initial={{ height: 0 }}
+                   initial={{ height: "0%" }}
                    whileInView={{ height: "40%" }}
                    viewport={{ once: true }}
                    transition={{ duration: 1, delay: 0.2 }}
                  />
                </div>
-               <div className="w-16 bg-gray-100 rounded-t-lg relative flex flex-col justify-end">
+               <div className="w-16 h-[80%] bg-gray-100 rounded-t-lg relative flex flex-col justify-end">
                  <motion.div 
                    className="w-full bg-primary/60 rounded-t-lg shadow-[0_-5px_15px_rgba(74,141,255,0.2)]"
-                   initial={{ height: 0 }}
+                   initial={{ height: "0%" }}
                    whileInView={{ height: "85%" }}
                    viewport={{ once: true }}
                    transition={{ duration: 1, delay: 0.4 }}
@@ -148,10 +177,10 @@ export const FeatureSection = () => {
                     Optimal
                  </div>
                </div>
-               <div className="w-16 bg-gray-100 rounded-t-lg relative flex flex-col justify-end">
+               <div className="w-16 h-[80%] bg-gray-100 rounded-t-lg relative flex flex-col justify-end">
                  <motion.div 
                    className="w-full bg-accent/40 rounded-t-lg"
-                   initial={{ height: 0 }}
+                   initial={{ height: "0%" }}
                    whileInView={{ height: "60%" }}
                    viewport={{ once: true }}
                    transition={{ duration: 1, delay: 0.6 }}

@@ -20,8 +20,8 @@ export default function Home() {
         <HowItWorks />
         <FeatureSection />
         <DeveloperSection />
-        <FAQSection />
-        <CTASection />
+        <FAQSection /> 
+         <CTASection />
       </main>
       <Footer />
     </div>

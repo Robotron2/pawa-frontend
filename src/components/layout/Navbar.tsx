@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
+import { motion, AnimatePresence } from "framer-motion";
 import { Button } from "@/components/ui/Button";
 import { Container } from "@/components/layout/Container";
 import { Logo } from "@/components/ui/Logo";
@@ -69,75 +70,88 @@ export const Navbar = () => {
       </header>
 
       {/* Mobile Navigation Drawer Overlay */}
-      {isOpen && (
-        <div 
-          className="fixed inset-0 bg-black/60 z-50 md:hidden animate-in fade-in" 
-          onClick={() => setIsOpen(false)}
-        />
-      )}
+      <AnimatePresence>
+        {isOpen && (
+          <motion.div 
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.2 }}
+            className="fixed inset-0 bg-black/60 z-50 md:hidden" 
+            onClick={() => setIsOpen(false)}
+          />
+        )}
+      </AnimatePresence>
 
       {/* Mobile Navigation Drawer */}
-      <div 
-        className={cn(
-          "fixed top-0 right-0 h-screen w-[280px] bg-surface shadow-2xl border-l border-border z-50 md:hidden flex flex-col p-6 transition-transform duration-300 ease-in-out",
-          isOpen ? "translate-x-0" : "translate-x-full"
+      <AnimatePresence>
+        {isOpen && (
+          <motion.div 
+            initial={{ x: "100%" }}
+            animate={{ x: 0 }}
+            exit={{ x: "100%" }}
+            transition={{ type: "spring", bounce: 0, duration: 0.3 }}
+            className="fixed inset-y-0 right-0 h-[100dvh] w-[280px] bg-surface shadow-2xl border-l border-border z-50 md:hidden flex flex-col"
+          >
+            <div className="flex flex-col flex-1 overflow-y-auto p-6">
+              <div className="flex items-center justify-between mb-8 mt-1 shrink-0">
+                <Logo />
+                <button 
+                  className="p-2 -mr-2 text-foreground/80 hover:text-primary transition-colors rounded-full hover:bg-gray-100"
+                  onClick={() => setIsOpen(false)}
+                  aria-label="Close Menu"
+                >
+                  <X size={20} />
+                </button>
+              </div>
+              
+              <nav className="flex flex-col gap-2 shrink-0">
+                <Link 
+                  href="/dashboard" 
+                  className="px-4 py-3 text-base font-medium rounded-xl hover:bg-gray-50 hover:text-primary transition-colors"
+                  onClick={() => setIsOpen(false)}
+                >
+                  Dashboard
+                </Link>
+                <Link 
+                  href="/routes" 
+                  className="px-4 py-3 text-base font-medium rounded-xl hover:bg-gray-50 hover:text-primary transition-colors"
+                  onClick={() => setIsOpen(false)}
+                >
+                  Routes
+                </Link>
+                <Link 
+                  href="/pools" 
+                  className="px-4 py-3 text-base font-medium rounded-xl hover:bg-gray-50 hover:text-primary transition-colors"
+                  onClick={() => setIsOpen(false)}
+                >
+                  Pools
+                </Link>
+                <Link 
+                  href="/developers" 
+                  className="px-4 py-3 text-base font-medium rounded-xl hover:bg-gray-50 hover:text-primary transition-colors"
+                  onClick={() => setIsOpen(false)}
+                >
+                  Developers
+                </Link>
+                <Link 
+                  href="/docs" 
+                  className="px-4 py-3 text-base font-medium rounded-xl hover:bg-gray-50 hover:text-primary transition-colors"
+                  onClick={() => setIsOpen(false)}
+                >
+                  Documentation
+                </Link>
+              </nav>
+              
+              <div className="mt-auto pt-6 border-t border-border shrink-0">
+                <Button variant="primary" className="w-full shadow-md" onClick={() => setIsOpen(false)}>
+                  Connect Wallet
+                </Button>
+              </div>
+            </div>
+          </motion.div>
         )}
-      >
-        <div className="flex items-center justify-between mb-8 mt-1">
-          <Logo />
-          <button 
-            className="p-2 -mr-2 text-foreground/80 hover:text-primary transition-colors rounded-full hover:bg-gray-100"
-            onClick={() => setIsOpen(false)}
-            aria-label="Close Menu"
-          >
-            <X size={20} />
-          </button>
-        </div>
-        
-        <nav className="flex flex-col gap-2">
-          <Link 
-            href="/dashboard" 
-            className="px-4 py-3 text-base font-medium rounded-xl hover:bg-gray-50 hover:text-primary transition-colors"
-            onClick={() => setIsOpen(false)}
-          >
-            Dashboard
-          </Link>
-          <Link 
-            href="/routes" 
-            className="px-4 py-3 text-base font-medium rounded-xl hover:bg-gray-50 hover:text-primary transition-colors"
-            onClick={() => setIsOpen(false)}
-          >
-            Routes
-          </Link>
-          <Link 
-            href="/pools" 
-            className="px-4 py-3 text-base font-medium rounded-xl hover:bg-gray-50 hover:text-primary transition-colors"
-            onClick={() => setIsOpen(false)}
-          >
-            Pools
-          </Link>
-          <Link 
-            href="/developers" 
-            className="px-4 py-3 text-base font-medium rounded-xl hover:bg-gray-50 hover:text-primary transition-colors"
-            onClick={() => setIsOpen(false)}
-          >
-            Developers
-          </Link>
-          <Link 
-            href="/docs" 
-            className="px-4 py-3 text-base font-medium rounded-xl hover:bg-gray-50 hover:text-primary transition-colors"
-            onClick={() => setIsOpen(false)}
-          >
-            Documentation
-          </Link>
-        </nav>
-        
-        <div className="mt-auto pt-6 border-t border-border">
-          <Button variant="primary" className="w-full shadow-md" onClick={() => setIsOpen(false)}>
-            Connect Wallet
-          </Button>
-        </div>
-      </div>
+      </AnimatePresence>
     </>
   );
 };
