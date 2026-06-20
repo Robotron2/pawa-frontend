@@ -159,31 +159,29 @@ export const FeatureSection = () => {
                <div className="w-16 h-[80%] bg-gray-100 rounded-t-lg relative flex flex-col justify-end group">
                  <motion.div 
                    className="w-full bg-accent/40 rounded-t-lg"
-                   initial={{ height: "0%" }}
-                   whileInView={{ height: "40%" }}
-                   viewport={{ once: true }}
-                   transition={{ duration: 1, delay: 0.2 }}
+                   animate={{ height: ["0%", "40%", "40%", "0%"] }}
+                   transition={{ duration: 3, repeat: Infinity, ease: "easeInOut", times: [0, 0.4, 0.8, 1], delay: 0 }}
                  />
                </div>
                <div className="w-16 h-[80%] bg-gray-100 rounded-t-lg relative flex flex-col justify-end">
                  <motion.div 
                    className="w-full bg-primary/60 rounded-t-lg shadow-[0_-5px_15px_rgba(74,141,255,0.2)]"
-                   initial={{ height: "0%" }}
-                   whileInView={{ height: "85%" }}
-                   viewport={{ once: true }}
-                   transition={{ duration: 1, delay: 0.4 }}
+                   animate={{ height: ["0%", "85%", "85%", "0%"] }}
+                   transition={{ duration: 3, repeat: Infinity, ease: "easeInOut", times: [0, 0.4, 0.8, 1], delay: 0.2 }}
                  />
-                 <div className="absolute -top-10 left-1/2 -translate-x-1/2 bg-primary text-white text-[10px] font-bold px-2 py-1 rounded shadow-md opacity-0 animate-[fadeIn_0.3s_1.4s_forwards]">
+                 <motion.div 
+                    className="absolute -top-10 left-1/2 -translate-x-1/2 bg-primary text-white text-[10px] font-bold px-2 py-1 rounded shadow-md"
+                    animate={{ opacity: [0, 1, 1, 0], y: [5, 0, 0, 5] }}
+                    transition={{ duration: 3, repeat: Infinity, ease: "easeInOut", times: [0, 0.4, 0.8, 1], delay: 0.2 }}
+                 >
                     Optimal
-                 </div>
+                 </motion.div>
                </div>
                <div className="w-16 h-[80%] bg-gray-100 rounded-t-lg relative flex flex-col justify-end">
                  <motion.div 
                    className="w-full bg-accent/40 rounded-t-lg"
-                   initial={{ height: "0%" }}
-                   whileInView={{ height: "60%" }}
-                   viewport={{ once: true }}
-                   transition={{ duration: 1, delay: 0.6 }}
+                   animate={{ height: ["0%", "60%", "60%", "0%"] }}
+                   transition={{ duration: 3, repeat: Infinity, ease: "easeInOut", times: [0, 0.4, 0.8, 1], delay: 0.4 }}
                  />
                </div>
             </motion.div>
