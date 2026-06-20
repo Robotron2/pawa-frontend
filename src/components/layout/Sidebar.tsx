@@ -2,6 +2,7 @@
 
 import React, { useState } from "react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { LayoutDashboard, Route, Database, ArrowLeftRight, Wallet, Home, Menu, X } from "lucide-react";
 import { useWallet } from "@/hooks/useWallet";
 import { Logo } from "@/components/ui/Logo";
@@ -59,7 +60,7 @@ export const Sidebar = () => {
           <nav className="flex flex-col gap-2">
             <NavItem href="/" icon={<Home size={18} />} label="Home" onClick={() => setIsOpen(false)} />
             <div className="h-px bg-border my-2" />
-            <NavItem href="/dashboard" icon={<LayoutDashboard size={18} />} label="Dashboard" active onClick={() => setIsOpen(false)} />
+            <NavItem href="/dashboard" icon={<LayoutDashboard size={18} />} label="Dashboard" onClick={() => setIsOpen(false)} />
             <NavItem href="/routes" icon={<Route size={18} />} label="Routes" onClick={() => setIsOpen(false)} />
             <NavItem href="/pools" icon={<Database size={18} />} label="Pools" onClick={() => setIsOpen(false)} />
             <NavItem href="/transactions" icon={<ArrowLeftRight size={18} />} label="Transactions" onClick={() => setIsOpen(false)} />
@@ -81,17 +82,23 @@ export const Sidebar = () => {
   );
 };
 
-const NavItem = ({ href, icon, label, active, onClick }: { href: string; icon: React.ReactNode; label: string; active?: boolean; onClick?: () => void }) => (
-  <Link 
-    href={href}
-    onClick={onClick}
-    className={`flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-medium transition-colors ${
-      active 
-        ? "bg-primary text-white" 
-        : "text-foreground/70 hover:bg-gray-100 hover:text-foreground"
-    }`}
-  >
-    {icon}
-    {label}
-  </Link>
-);
+const NavItem = ({ href, icon, label, onClick }: { href: string; icon: React.ReactNode; label: string; onClick?: () => void }) => {
+  const pathname = usePathname();
+  const active = href === '/' ? pathname === '/' : pathname?.startsWith(href);
+
+  return (
+    <Link 
+      href={href}
+      onClick={onClick}
+      className={cn(
+        "flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-medium transition-all duration-200",
+        active 
+          ? "bg-primary text-white shadow-md shadow-primary/20 translate-x-1" 
+          : "text-foreground/70 hover:bg-gray-100 hover:text-foreground"
+      )}
+    >
+      {icon}
+      {label}
+    </Link>
+  );
+};
