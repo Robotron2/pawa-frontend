@@ -36,8 +36,8 @@ export const TransactionDetails = ({ transaction }: TransactionDetailsProps) => 
   }
 
   return (
-    <div className="p-6 bg-gray-50/40 border-t border-border/50 shadow-inner">
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+    <div className="p-4 sm:p-6 bg-gray-50/40 border-t border-border/50 shadow-inner">
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 lg:gap-8">
         
         {/* Left Col: Details */}
         <div className="lg:col-span-1 space-y-4">
@@ -78,7 +78,7 @@ export const TransactionDetails = ({ transaction }: TransactionDetailsProps) => 
         {/* Right Col: Route Visualization */}
         <div className="lg:col-span-2">
           <h4 className="text-[10px] font-bold text-foreground/50 uppercase tracking-wider mb-2">Route Path Execution</h4>
-          <div className="bg-white rounded-xl border border-border p-6 shadow-sm h-[calc(100%-1.75rem)] flex flex-col justify-center">
+          <div className="bg-white rounded-xl border border-border p-4 sm:p-6 shadow-sm h-full lg:h-[calc(100%-1.75rem)] flex flex-col justify-center">
             
             <div className="flex justify-between items-center mb-6">
                <div>
