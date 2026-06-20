@@ -1,7 +1,13 @@
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { Hero } from "@/components/landing/Hero";
-import { Features } from "@/components/landing/Features";
+import { ProtocolOverview } from "@/components/landing/ProtocolOverview";
+import { ProblemSolution } from "@/components/landing/ProblemSolution";
+import { HowItWorks } from "@/components/landing/HowItWorks";
+import { FeatureSection } from "@/components/landing/FeatureSection";
+import { DeveloperSection } from "@/components/landing/DeveloperSection";
+import { FAQSection } from "@/components/landing/FAQSection";
+import { CTASection } from "@/components/landing/CTASection";
 
 export default function Home() {
   return (
@@ -9,7 +15,13 @@ export default function Home() {
       <Navbar />
       <main className="flex-1">
         <Hero />
-        <Features />
+        <ProtocolOverview />
+        <ProblemSolution />
+        <HowItWorks />
+        <FeatureSection />
+        <DeveloperSection />
+        <FAQSection />
+        <CTASection />
       </main>
       <Footer />
     </div>
