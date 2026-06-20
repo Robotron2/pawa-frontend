@@ -115,7 +115,7 @@
 "use client";
 
 import React, { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence, Variants } from "framer-motion";
 import { Search, SlidersHorizontal, Zap, CheckCircle2, ChevronRight, ChevronLeft } from "lucide-react";
 
 const steps = [
@@ -197,7 +197,7 @@ const steps = [
   },
 ];
 
-const panelVariants = {
+const panelVariants: Variants = {
   enter: { opacity: 0, y: 12 },
   center: { opacity: 1, y: 0, transition: { duration: 0.3, ease: [0.4, 0, 0.2, 1] } },
   exit: { opacity: 0, y: -8, transition: { duration: 0.2 } },
