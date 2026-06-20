@@ -12,9 +12,12 @@ import { ArrowRight } from "lucide-react";
 export const Hero = () => {
   return (
     <section className="relative overflow-hidden pt-24 pb-32 border-b border-border">
-      {/* Editorial Grid Background */}
-      <div 
-        className="absolute inset-0 z-0 pointer-events-none opacity-[0.03]"
+      {/* Animated Editorial Grid Background */}
+      <motion.div 
+        className="absolute inset-0 z-0 pointer-events-none"
+        initial={{ opacity: 0, backgroundPositionY: "20px" }}
+        animate={{ opacity: 0.03, backgroundPositionY: "0px" }}
+        transition={{ duration: 1.5, ease: "easeOut" }}
         style={{
           backgroundImage: `
             linear-gradient(to right, var(--color-foreground) 1px, transparent 1px),
@@ -61,14 +64,35 @@ export const Hero = () => {
             >
               <Link href="/dashboard" className="w-full sm:w-auto">
                 <Button size="lg" className="w-full gap-2 hover:-translate-y-0.5 transition-transform">
-                  Build with Pawa <ArrowRight size={18} />
+                  Connect Wallet <ArrowRight size={18} />
                 </Button>
               </Link>
               <Link href="/routes" className="w-full sm:w-auto">
                 <Button variant="outline" size="lg" className="w-full bg-white hover:-translate-y-0.5 transition-transform">
-                  Explore Paths
+                  Explore Protocol
                 </Button>
               </Link>
+            </motion.div>
+
+            {/* Trust Indicators */}
+            <motion.div 
+              className="flex flex-wrap items-center gap-6 mt-12 pt-8 border-t border-border"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.7, delay: 0.6, ease: [0.16, 1, 0.3, 1] }}
+            >
+              <div className="flex items-center gap-2 text-xs font-medium text-foreground/60">
+                <div className="w-1.5 h-1.5 rounded-full bg-accent animate-pulse shadow-[0_0_8px_rgba(0,200,235,0.8)]" />
+                Stellar Native
+              </div>
+              <div className="flex items-center gap-2 text-xs font-medium text-foreground/60">
+                <div className="w-1.5 h-1.5 rounded-full bg-primary" />
+                Multi-hop Routing
+              </div>
+              <div className="flex items-center gap-2 text-xs font-medium text-foreground/60">
+                <div className="w-1.5 h-1.5 rounded-full bg-success" />
+                Atomic Execution
+              </div>
             </motion.div>
           </div>
 
