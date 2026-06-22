@@ -15,9 +15,9 @@ export const Sidebar = () => {
   return (
     <>
       {/* Mobile Top Header */}
-      <div className="lg:hidden fixed top-0 left-0 right-0 h-16 bg-surface border-b border-border flex items-center justify-between px-4 z-40">
+      <div className="lg:hidden fixed top-0 left-0 right-0 h-20 bg-surface border-b border-border flex items-center justify-between px-4 z-40">
         <Link href="/">
-          <Logo />
+          <Logo size="md" />
         </Link>
         <button 
           onClick={() => setIsOpen(true)}
@@ -50,7 +50,7 @@ export const Sidebar = () => {
           </button>
 
           <Link href="/" className="flex items-center gap-3 mb-10 hover:opacity-80 transition-opacity w-fit">
-            <Logo showText={false} />
+            <Logo size="sm" />
             <div>
               <h2 className="font-heading font-bold text-sm leading-tight text-foreground">Network Node</h2>
               <p className="text-xs text-foreground/50">{wallet.network}</p>

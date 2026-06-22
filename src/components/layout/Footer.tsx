@@ -9,8 +9,8 @@ export const Footer = () => {
       <Container>
         <div className="grid grid-cols-1 md:grid-cols-4 gap-12 lg:gap-8">
           <div className="col-span-1 md:col-span-1">
-            <Link href="/" className="mb-6 block hover:opacity-90 transition-opacity w-fit">
-              <Logo />
+            <Link href="/" className="mb-2 block hover:opacity-90 transition-opacity w-fit -ml-10 -mt-4">
+              <Logo size="xl" />
             </Link>
             <p className="text-sm text-foreground/60 leading-relaxed max-w-xs">
               © 2024 PawaProtocol. <br />
