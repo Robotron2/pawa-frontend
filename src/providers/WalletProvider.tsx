@@ -23,20 +23,40 @@ let initialized = false;
 export const WalletProvider = ({ children }: { children: React.ReactNode }) => {
   const [address, setAddress] = useState<string | null>(null);
   const [isConnected, setIsConnected] = useState<boolean>(false);
-  const [isConnecting, setIsConnecting] = useState<boolean>(false);
+  const [isConnecting, setIsConnecting] = useState<boolean>(true); // start as true to prevent flash while restoring
   const [error, setError] = useState<string | null>(null);
   const [network, setNetwork] = useState<string>('Testnet');
 
-  // Initialize the kit only on the client side
+  // Initialize the kit and restore session
   useEffect(() => {
-    if (typeof window !== 'undefined' && !initialized) {
-      StellarWalletsKit.init({
-        network: Networks.TESTNET,
-        selectedWalletId: FREIGHTER_ID,
-        modules: [new FreighterModule()],
-      });
-      initialized = true;
-    }
+    const initAndRestore = async () => {
+      if (typeof window !== 'undefined' && !initialized) {
+        StellarWalletsKit.init({
+          network: Networks.TESTNET,
+          selectedWalletId: FREIGHTER_ID,
+          modules: [new FreighterModule()],
+        });
+        initialized = true;
+
+        // Restore session if exists
+        const savedWallet = localStorage.getItem('pawa_connected_wallet');
+        if (savedWallet) {
+          try {
+            StellarWalletsKit.setWallet(savedWallet);
+            // fetchAddress asks the module directly without UI if already authorized
+            const { address } = await StellarWalletsKit.fetchAddress();
+            setAddress(address);
+            setIsConnected(true);
+          } catch (err) {
+            console.error("Failed to restore wallet session:", err);
+            localStorage.removeItem('pawa_connected_wallet');
+          }
+        }
+      }
+      setIsConnecting(false); // Done checking
+    };
+    
+    initAndRestore();
   }, []);
 
   const connectWallet = useCallback(async () => {
@@ -50,6 +70,7 @@ export const WalletProvider = ({ children }: { children: React.ReactNode }) => {
       setAddress(address);
       setIsConnected(true);
       setError(null);
+      localStorage.setItem('pawa_connected_wallet', FREIGHTER_ID);
       toast.success("Wallet connected successfully");
     } catch (err: any) {
       if (err.code === -1 || err.message === 'The user closed the modal.') {
@@ -70,6 +91,7 @@ export const WalletProvider = ({ children }: { children: React.ReactNode }) => {
     setAddress(null);
     setIsConnected(false);
     setError(null);
+    localStorage.removeItem('pawa_connected_wallet');
   }, []);
 
   return (
