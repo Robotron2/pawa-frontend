@@ -8,8 +8,10 @@ import { Badge } from "@/components/ui/Badge";
 import { Container } from "@/components/layout/Container";
 import { NetworkVisualization } from "./NetworkVisualization";
 import { ArrowRight } from "lucide-react";
+import { useWallet } from "@/hooks/useWallet";
 
 export const Hero = () => {
+  const { wallet, connectWallet, isConnecting } = useWallet();
   return (
     <section className="relative overflow-hidden pt-24 pb-32 border-b border-border">
       {/* Animated Editorial Grid Background */}
@@ -62,11 +64,22 @@ export const Hero = () => {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7, delay: 0.45, ease: [0.16, 1, 0.3, 1] }}
             >
-              <Link href="/dashboard" className="w-full sm:w-auto">
-                <Button size="lg" className="w-full gap-2 hover:-translate-y-0.5 transition-transform">
-                  Connect Wallet <ArrowRight size={18} />
+              {wallet.connected ? (
+                <Link href="/dashboard" className="w-full sm:w-auto">
+                  <Button size="lg" className="w-full gap-2 hover:-translate-y-0.5 transition-transform">
+                    Go to Dashboard <ArrowRight size={18} />
+                  </Button>
+                </Link>
+              ) : (
+                <Button 
+                  size="lg" 
+                  className="w-full sm:w-auto gap-2 hover:-translate-y-0.5 transition-transform"
+                  onClick={connectWallet}
+                  disabled={isConnecting}
+                >
+                  {isConnecting ? "Connecting..." : "Connect Wallet"} <ArrowRight size={18} />
                 </Button>
-              </Link>
+              )}
               <Link href="/routes" className="w-full sm:w-auto">
                 <Button variant="outline" size="lg" className="w-full bg-white hover:-translate-y-0.5 transition-transform">
                   Explore Protocol

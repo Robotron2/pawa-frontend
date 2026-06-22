@@ -8,6 +8,8 @@ import { useWallet } from "@/hooks/useWallet";
 import { Logo } from "@/components/ui/Logo";
 import { cn } from "@/lib/utils";
 
+import { WalletButton } from "@/components/wallet/WalletButton";
+
 export const Sidebar = () => {
   const { wallet } = useWallet();
   const [isOpen, setIsOpen] = useState(false);
@@ -19,12 +21,15 @@ export const Sidebar = () => {
         <Link href="/">
           <Logo size="md" />
         </Link>
-        <button 
-          onClick={() => setIsOpen(true)}
-          className="p-2 text-foreground/80 hover:text-primary transition-colors"
-        >
-          <Menu size={24} />
-        </button>
+        <div className="flex items-center gap-2">
+          <WalletButton />
+          <button 
+            onClick={() => setIsOpen(true)}
+            className="p-2 text-foreground/80 hover:text-primary transition-colors"
+          >
+            <Menu size={24} />
+          </button>
+        </div>
       </div>
 
       {/* Mobile Overlay */}
@@ -64,11 +69,13 @@ export const Sidebar = () => {
             <NavItem href="/routes" icon={<Route size={18} />} label="Routes" onClick={() => setIsOpen(false)} />
             <NavItem href="/pools" icon={<Database size={18} />} label="Pools" onClick={() => setIsOpen(false)} />
             <NavItem href="/transactions" icon={<ArrowLeftRight size={18} />} label="Transactions" onClick={() => setIsOpen(false)} />
-            <NavItem href="/wallet" icon={<Wallet size={18} />} label="Wallet" onClick={() => setIsOpen(false)} />
           </nav>
         </div>
 
-        <div className="mt-auto p-6">
+        <div className="mt-auto p-6 flex flex-col gap-4">
+          <div className="w-full">
+            <WalletButton className="w-full justify-between" />
+          </div>
           <div className="rounded-xl border border-border p-4 bg-gray-50 flex items-center justify-between">
             <div>
               <p className="text-xs font-medium text-foreground/60 mb-1">Node Status</p>
