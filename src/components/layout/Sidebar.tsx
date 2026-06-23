@@ -23,7 +23,7 @@ export const Sidebar = () => {
         </Link>
         <div className="flex items-center gap-2">
           <WalletButton />
-          <button 
+          <button
             onClick={() => setIsOpen(true)}
             className="p-2 text-foreground/80 hover:text-primary transition-colors"
           >
@@ -34,9 +34,9 @@ export const Sidebar = () => {
 
       {/* Mobile Overlay */}
       {isOpen && (
-        <div 
-          className="fixed inset-0 bg-black/50 z-40 lg:hidden animate-in fade-in" 
-          onClick={() => setIsOpen(false)} 
+        <div
+          className="fixed inset-0 bg-black/50 z-40 lg:hidden animate-in fade-in"
+          onClick={() => setIsOpen(false)}
         />
       )}
 
@@ -47,7 +47,7 @@ export const Sidebar = () => {
       )}>
         <div className="p-6 relative">
           {/* Mobile Close Button */}
-          <button 
+          <button
             className="lg:hidden absolute top-6 right-6 p-1 text-foreground/60 hover:text-foreground"
             onClick={() => setIsOpen(false)}
           >
@@ -76,13 +76,6 @@ export const Sidebar = () => {
           <div className="w-full">
             <WalletButton className="w-full justify-between" />
           </div>
-          <div className="rounded-xl border border-border p-4 bg-gray-50 flex items-center justify-between">
-            <div>
-              <p className="text-xs font-medium text-foreground/60 mb-1">Node Status</p>
-              <p className="text-sm font-semibold text-primary">Synced: Block 849201</p>
-            </div>
-            <div className="w-2 h-2 rounded-full bg-accent animate-pulse shadow-[0_0_8px_rgba(0,200,235,0.8)]" />
-          </div>
         </div>
       </aside>
     </>
@@ -94,13 +87,13 @@ const NavItem = ({ href, icon, label, onClick }: { href: string; icon: React.Rea
   const active = href === '/' ? pathname === '/' : pathname?.startsWith(href);
 
   return (
-    <Link 
+    <Link
       href={href}
       onClick={onClick}
       className={cn(
         "flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-medium transition-all duration-200",
-        active 
-          ? "bg-primary text-white shadow-md shadow-primary/20 translate-x-1" 
+        active
+          ? "bg-primary text-white shadow-md shadow-primary/20 translate-x-1"
           : "text-foreground/70 hover:bg-gray-100 hover:text-foreground"
       )}
     >
