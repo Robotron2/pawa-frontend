@@ -1,6 +1,5 @@
 import React from "react";
 import { Card } from "@/components/ui/Card";
-import { Badge } from "@/components/ui/Badge";
 import { cn } from "@/lib/utils";
 import { RouteGraph, PathNode } from "./RouteGraph";
 import { Star } from "lucide-react";

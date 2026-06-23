@@ -3,7 +3,7 @@
 import React, { useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { LayoutDashboard, Route, Database, ArrowLeftRight, Wallet, Home, Menu, X } from "lucide-react";
+import { LayoutDashboard, Route, Database, ArrowLeftRight, Home, Menu, X } from "lucide-react";
 import { useWallet } from "@/hooks/useWallet";
 import { Logo } from "@/components/ui/Logo";
 import { cn } from "@/lib/utils";

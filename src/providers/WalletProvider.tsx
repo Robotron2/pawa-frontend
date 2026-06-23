@@ -25,7 +25,7 @@ export const WalletProvider = ({ children }: { children: React.ReactNode }) => {
   const [isConnected, setIsConnected] = useState<boolean>(false);
   const [isConnecting, setIsConnecting] = useState<boolean>(true); // start as true to prevent flash while restoring
   const [error, setError] = useState<string | null>(null);
-  const [network, setNetwork] = useState<string>('Testnet');
+  const [network] = useState<string>('Testnet');
 
   // Initialize the kit and restore session
   useEffect(() => {
@@ -72,7 +72,8 @@ export const WalletProvider = ({ children }: { children: React.ReactNode }) => {
       setError(null);
       localStorage.setItem('pawa_connected_wallet', FREIGHTER_ID);
       toast.success("Wallet connected successfully");
-    } catch (err: any) {
+    } catch (error: unknown) {
+      const err = error as { code?: number; message?: string };
       if (err.code === -1 || err.message === 'The user closed the modal.') {
         toast.info("Wallet connection cancelled");
       } else {

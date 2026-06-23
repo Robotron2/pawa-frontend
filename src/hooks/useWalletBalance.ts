@@ -30,7 +30,7 @@ export const useWalletBalance = () => {
     try {
       const rawBalances = await fetchAccountBalances(wallet.address, wallet.network);
       
-      const formattedBalances = rawBalances.map((b) => {
+      const formattedBalances: WalletAssetBalance[] = rawBalances.map((b) => {
         const isNative = b.asset_type === 'native';
         const amountNum = parseFloat(b.balance);
         
@@ -58,14 +58,16 @@ export const useWalletBalance = () => {
       });
 
       setBalances(formattedBalances);
-    } catch (err: any) {
-      setError(err.message || 'Failed to load balances');
+    } catch (err: unknown) {
+      const errorMessage = err instanceof Error ? err.message : 'Failed to load balances';
+      setError(errorMessage);
     } finally {
       setLoading(false);
     }
   }, [wallet.connected, wallet.address, wallet.network]);
 
   useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     fetchBalances();
   }, [fetchBalances]);
 

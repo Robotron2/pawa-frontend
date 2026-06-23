@@ -3,7 +3,7 @@
 import React, { useState } from "react";
 import { Button } from "@/components/ui/Button";
 import { useWallet } from "@/hooks/useWallet";
-import { Wallet, LogOut, ChevronDown } from "lucide-react";
+import { LogOut, ChevronDown } from "lucide-react";
 
 export const WalletButton = ({ className }: { className?: string }) => {
   const { wallet, connectWallet, disconnectWallet, isConnecting } = useWallet();

@@ -3,11 +3,9 @@
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
-import { Button } from "@/components/ui/Button";
 import { Container } from "@/components/layout/Container";
 import { Logo } from "@/components/ui/Logo";
 import { Menu, X } from "lucide-react";
-import { cn } from "@/lib/utils";
 import { WalletButton } from "@/components/wallet/WalletButton";
 
 export const Navbar = () => {

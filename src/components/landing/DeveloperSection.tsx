@@ -70,7 +70,7 @@ export const DeveloperSection = () => {
               Build payment experiences without rebuilding routing logic.
             </h2>
             <p className="text-lg text-foreground/70 mb-8 leading-relaxed">
-              Integrate PawaProtocol natively into your wallets, exchanges, or merchant flows. Whether you prefer interacting via our high-speed REST API, typed SDKs, or directly on-chain via Soroban smart contracts, we've got you covered.
+              Integrate PawaProtocol natively into your wallets, exchanges, or merchant flows. Whether you prefer interacting via our high-speed REST API, typed SDKs, or directly on-chain via Soroban smart contracts, we&apos;ve got you covered.
             </p>
             
             <div className="flex flex-col sm:flex-row gap-4">
