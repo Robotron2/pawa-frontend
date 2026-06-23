@@ -48,7 +48,7 @@ export default function NotFound() {
             Dead End Reached
           </h2>
           <p className="text-foreground/60 mb-10 max-w-md mx-auto text-lg leading-relaxed">
-            We couldn't discover an optimal route to this destination. The node you are looking for is offline, moved, or never existed.
+            We couldn&apos;t discover an optimal route to this destination. The node you are looking for is offline, moved, or never existed.
           </p>
           
           <div className="flex flex-col sm:flex-row gap-4 w-full justify-center">

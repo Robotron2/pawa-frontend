@@ -1,14 +1,16 @@
 "use client";
 
-import { useState } from 'react';
-import { WalletState } from '@/types/wallet';
+import { useWalletContext } from '@/providers/WalletProvider';
 
 export const useWallet = () => {
-  const [wallet, setWallet] = useState<WalletState>({
-    connected: true,
-    address: 'GBL3...K89S',
-    network: 'Mainnet-v1.2',
-  });
+  const context = useWalletContext();
   
-  return { wallet };
+  return {
+    wallet: {
+      connected: context.isConnected,
+      address: context.address || '',
+      network: context.network,
+    },
+    ...context
+  };
 };

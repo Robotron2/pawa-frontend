@@ -1,6 +1,7 @@
 import React from "react";
 import { SwapWidget } from "@/components/dashboard/SwapWidget";
 import { RouteSummary } from "@/components/dashboard/RouteSummary";
+import { BalanceCard } from "@/components/wallet/BalanceCard";
 
 export default function DashboardPage() {
   return (
@@ -22,6 +23,8 @@ export default function DashboardPage() {
           <h1 className="text-3xl font-heading font-bold text-foreground mb-3">Liquidity Routing</h1>
           <p className="text-foreground/60">Configure parameters to discover the optimal settlement path across networked pools.</p>
         </div>
+
+        <BalanceCard />
 
         <SwapWidget />
         <RouteSummary />

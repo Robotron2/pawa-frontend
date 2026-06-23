@@ -3,11 +3,10 @@
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
-import { Button } from "@/components/ui/Button";
 import { Container } from "@/components/layout/Container";
 import { Logo } from "@/components/ui/Logo";
 import { Menu, X } from "lucide-react";
-import { cn } from "@/lib/utils";
+import { WalletButton } from "@/components/wallet/WalletButton";
 
 export const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -54,7 +53,7 @@ export const Navbar = () => {
             </div>
 
             <div className="hidden md:flex items-center gap-4">
-              <Button variant="primary">Connect Wallet</Button>
+              <WalletButton />
             </div>
 
             {/* Mobile Menu Toggle (Hamburger) */}
@@ -146,9 +145,9 @@ export const Navbar = () => {
               </nav>
               
               <div className="mt-auto pt-6 border-t border-border shrink-0">
-                <Button variant="primary" className="w-full shadow-md" onClick={() => setIsOpen(false)}>
-                  Connect Wallet
-                </Button>
+                <div onClick={() => setIsOpen(false)}>
+                  <WalletButton className="w-full shadow-md" />
+                </div>
               </div>
             </div>
           </motion.div>
